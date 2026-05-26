@@ -1,0 +1,31 @@
+## COMUNICACIÓN ENTRE COMPONENTES DESDE HIJO PADRE - PADRE HIJO
+Para poder comunicar componentes padres a hijos y viseversa se puede hacer
+pasando funciones como propiedad al componente hijo.
+
+## Componente padres
+export cont ComponentePadre = () => {
+  const handleTermClicked = (term: string) => {
+    console.log({term})
+  }
+
+  return (
+    <>
+      <ComponenteHijo onLabelClicked={handleTermClicked}/>
+    </>
+  )
+}
+
+# Componente hijo
+interface Props {
+  onLabelClicked: (term:string) => void
+}
+
+export const ComponenteHijo = ({onLabelClicked}: Props) {
+  return (
+    <>
+      <li onClick={() => onLabelClicked(term)}></li>
+    </>
+  )
+}
+
+
