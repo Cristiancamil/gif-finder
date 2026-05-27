@@ -29,3 +29,14 @@ export const ComponenteHijo = ({onLabelClicked}: Props) {
 }
 
 
+## Eventos comunes utilizados en React
+Los eventos permiten ejecutar acciones cuando el usuario interactúa con la interfaz.
+
+onClick(): Se ejecuta cuando el usuario hace clic sobre un elemento, se usa en botones, enlaces y tarjetas.
+onChange(): Se ejecuta cuando cambia el valor de un elemento en el formulario, se usa en input, select y textarea.
+onKeyDown(): Se ejecuta cuando el usuario presiona una tecla.
+onKeyUp(): Se ejecuta cuando el usuario suela una tecla.
+onSubmit(): Se ejecuta cuando se envía un formulario.
+onMouseEnter(): Se ejecuta cuando el cursor entra sobre un componente.
+onMouseLabel(): Se ejecuta cuando el cursor sale del elemento.
+

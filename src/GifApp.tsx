@@ -1,23 +1,32 @@
 import { useState } from "react"
 import { mockGifs } from "./mock-data/gifs.mock"
 import { CustosHeader } from "./shared/components/CustosHeader"
-import { GifList } from "./shared/components/GifList"
-import { PreviousSearches } from "./shared/components/PreviousSearches"
+import { GifList } from "./gifs/components/GifList"
+import { PreviousSearches } from "./gifs/components/PreviousSearches"
 import { SearchBar } from "./shared/components/SearchBar"
 
 
 export const GifApp = () => {
   const [previousTerm, setPreviousTerms] = useState(['dragon ball z'])
 
-  /**
-   * Función que hace algo cuando se ejecuta, se llama en el componente
-   * PreviousSearches cada vez que se haga click en un elemento del historial
-   * de busquedas.
-   * @param term retorna un string, cuando se haga click en el elemento.
-   */
+
+  // Manejar de Termino en busquedas previas cliqueado.
   const handleTermClicked = (term: string) => {
     console.log({ term })
   }
+
+
+  // Añadir Termino a las busquedas previas
+  const handleSearch = (query: string = '') => {
+    query.trim().toLowerCase()
+
+    if (query.length === 0) return
+
+    if (previousTerm.includes(query)) return
+
+    setPreviousTerms([query, ...previousTerm].splice(0, 6))
+  }
+
 
   return (
     <>
@@ -30,7 +39,7 @@ export const GifApp = () => {
       {/* Search */}
       <SearchBar
         placeholderText="Buscar gifs"
-        buttonText="Buscar"
+        onQuery={handleSearch}
       />
 
       {/* Buquedas previas */}
