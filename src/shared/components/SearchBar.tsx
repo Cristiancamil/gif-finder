@@ -7,15 +7,12 @@ interface Props {
 }
 
 export const SearchBar = ({ placeholderText = 'Buscar', onQuery }: Props) => {
-
   const [query, setQuery] = useState('')
-
 
 
   // Ejecuta una búsqueda automática
   // 700ms después del último cambio del input.
   useEffect(() => {
-
     const timeoutId = setTimeout(() => {
       onQuery(query)
     }, 700)
@@ -23,18 +20,7 @@ export const SearchBar = ({ placeholderText = 'Buscar', onQuery }: Props) => {
     return () => {
       clearTimeout(timeoutId)
     }
-
   }, [query, onQuery])
-
-
-
-  // Debounce
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setQuery(event.target.value)
-  }
-
 
 
   // Ejecuta la búsqueda manualmente.
@@ -51,14 +37,13 @@ export const SearchBar = ({ placeholderText = 'Buscar', onQuery }: Props) => {
   }
 
 
-
   return (
     <div className="search-container">
       <input
         type="text"
         placeholder={placeholderText}
         value={query}
-        onChange={handleChange}
+        onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}
       />
       <button onClick={handleSearch}>Buscar</button>

@@ -1,14 +1,15 @@
 import { useState } from "react"
-import { mockGifs } from "./mock-data/gifs.mock"
 import { CustosHeader } from "./shared/components/CustosHeader"
 import { GifList } from "./gifs/components/GifList"
 import { PreviousSearches } from "./gifs/components/PreviousSearches"
 import { SearchBar } from "./shared/components/SearchBar"
+import { getGifsByQuery } from "./gifs/actions/get-gifs-by-query.actions"
+import type { Gif } from "./gifs/interfaces/gif.interface"
 
 
 export const GifApp = () => {
-  const [previousTerm, setPreviousTerms] = useState(['dragon ball z'])
-
+  const [gifs, setGifs] = useState<Gif[]>([])
+  const [previousTerm, setPreviousTerms] = useState<string[]>(['dragon ball z'])
 
   // Manejar de Termino en busquedas previas cliqueado.
   const handleTermClicked = (term: string) => {
@@ -17,7 +18,7 @@ export const GifApp = () => {
 
 
   // Añadir Termino a las busquedas previas
-  const handleSearch = (query: string = '') => {
+  const handleSearch = async (query: string = '') => {
     query.trim().toLowerCase()
 
     if (query.length === 0) return
@@ -25,6 +26,9 @@ export const GifApp = () => {
     if (previousTerm.includes(query)) return
 
     setPreviousTerms([query, ...previousTerm].splice(0, 6))
+
+    const gifs = await getGifsByQuery(query)
+    setGifs(gifs)
   }
 
 
@@ -50,7 +54,7 @@ export const GifApp = () => {
       />
 
       {/* Gifs */}
-      <GifList gifs={mockGifs}
+      <GifList gifs={gifs}
       />
     </>
   )
