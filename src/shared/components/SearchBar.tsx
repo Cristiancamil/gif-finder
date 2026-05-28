@@ -15,6 +15,7 @@ export const SearchBar = ({ placeholderText = 'Buscar', onQuery }: Props) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       onQuery(query)
+      setQuery('')
     }, 700)
 
     return () => {
@@ -26,6 +27,7 @@ export const SearchBar = ({ placeholderText = 'Buscar', onQuery }: Props) => {
   // Ejecuta la búsqueda manualmente.
   const handleSearch = () => {
     onQuery(query)
+    setQuery('')
   }
 
 
@@ -33,6 +35,7 @@ export const SearchBar = ({ placeholderText = 'Buscar', onQuery }: Props) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch()
+      setQuery('')
     }
   }
 
