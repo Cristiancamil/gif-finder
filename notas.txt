@@ -40,3 +40,33 @@ onSubmit(): Se ejecuta cuando se envía un formulario.
 onMouseEnter(): Se ejecuta cuando el cursor entra sobre un componente.
 onMouseLabel(): Se ejecuta cuando el cursor sale del elemento.
 
+
+## Pruebas de integración configuración
+instalar vitest
+npm install --save-dev vitest jsdom
+
+Instalar ReactTesting Library
+npm install --save-dev @testing-library/react @testing-library/dom
+
+Instalar ambas librerías desde un solo comando:
+npm install --save-dev @testing-library/react @testing-library/dom vitest jsdom
+
+Añadir el escrip para correr vitest al package.json:
+"scripts": {
+  "test": "vitest",
+  "test:ui": "vitest --ui",
+  "coverage": "vitest run --coverage"
+}
+
+Configurar vite.config.test
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react-swc';
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+  },
+});
