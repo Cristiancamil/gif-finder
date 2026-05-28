@@ -1,3 +1,12 @@
+/**
+ * Representa la respuesta principal
+ * devuelta por la API de Giphy.
+ *
+ * Incluye:
+ * - data: listado de GIFs encontrados.
+ * - meta: información sobre el estado de la respuesta.
+ * - pagination: datos de paginación.
+ */
 export interface GiphyResponse {
   data: GiphyGif[];
   meta: Meta;
