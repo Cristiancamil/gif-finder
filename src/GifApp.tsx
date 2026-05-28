@@ -9,7 +9,7 @@ import type { Gif } from "./gifs/interfaces/gif.interface"
 
 export const GifApp = () => {
   const [gifs, setGifs] = useState<Gif[]>([])
-  const [previousTerm, setPreviousTerms] = useState<string[]>(['dragon ball z'])
+  const [previousTerm, setPreviousTerms] = useState<string[]>([])
 
   // Manejar de Termino en busquedas previas cliqueado.
   const handleTermClicked = (term: string) => {
