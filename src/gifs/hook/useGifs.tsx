@@ -48,6 +48,11 @@ export const useGifs = () => {
       setGifs(gifsCache.current[term])
       return
     }
+
+    const gifs = await getGifsByQuery(term)
+    setGifs(gifs)
+    // Guardar resultados en caché
+    gifsCache.current[term] = gifs
   }
 
   /**
